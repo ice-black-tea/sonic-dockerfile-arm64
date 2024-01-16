@@ -13,6 +13,6 @@ jobs:
       - name: login docker hub
         run: echo "${{ secrets.ACCESS_TOKEN }}" | docker login -u zhouyixun --password-stdin
       - name: build docker image
-        run: docker build --platform linux/arm64 -f sonic-client-web/Dockerfile -t iceblacktea/sonic-client-web-arm64-base:v1.0.0 .
+        run: DOCKER_DEFAULT_PLATFORM="linux/arm64" docker build -f sonic-client-web/Dockerfile -t iceblacktea/sonic-client-web-arm64-base:v1.0.0 .
       - name: push docker image
         run: docker push iceblacktea/sonic-client-web-arm64-base:v1.0.0
