@@ -19,7 +19,6 @@ RUN apt-get -qqy update && \
     gnupg \
     salt-minion \
     libasound2-dev freeglut3-dev libgtk2.0-dev libusb-dev zlib1g libffi-dev libnss3 libbz2-dev zlib1g-dev \
-    android-tools-adb \
   && rm -rf /var/lib/apt/lists/* \
   && apt-get clean
 
@@ -45,7 +44,8 @@ ENV PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest:$ANDROID_HOME/cmdline-tools/la
 
 RUN mkdir -p ~/.android && \
     touch ~/.android/repositories.cfg && \
-    echo y | sdkmanager "platform-tools"
+    wget https://github.com/lzhiyong/android-sdk-tools/releases/download/34.0.3/android-sdk-tools-static-aarch64.zip -O tools.zip \
+    unzip tools.zip && rm tools.zip
 
 ENV PATH=$PATH:$ANDROID_HOME/platform-tools
 
