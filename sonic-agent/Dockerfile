@@ -44,7 +44,7 @@ ENV PATH=$PATH:$ANDROID_HOME/cmdline-tools/latest:$ANDROID_HOME/cmdline-tools/la
 
 RUN mkdir -p ~/.android && \
     touch ~/.android/repositories.cfg && \
-    wget https://github.com/lzhiyong/android-sdk-tools/releases/download/34.0.3/android-sdk-tools-static-aarch64.zip -O tools.zip \
+    wget https://github.com/lzhiyong/android-sdk-tools/releases/download/34.0.3/android-sdk-tools-static-aarch64.zip -O tools.zip && \
     unzip tools.zip && rm tools.zip
 
 ENV PATH=$PATH:$ANDROID_HOME/platform-tools
