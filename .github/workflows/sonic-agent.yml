@@ -21,6 +21,17 @@ jobs:
       - name: login docker hub
         run: echo "${{ secrets.ACCESS_TOKEN }}" | docker login -u iceblacktea --password-stdin
       - name: build docker image
-        run: docker buildx build --platform linux/arm64 -f sonic-agent/Dockerfile -t iceblacktea/sonic-agent-linux-arm64-base:v1.0.2 .
+        run: |
+          docker buildx build --platform linux/arm64 \
+            -f sonic-agent/Dockerfile \
+            -o "type=image,push=false" \
+            -t iceblacktea/sonic-agent-linux-arm64-base:v1.0.2 \ 
+            .
+
       - name: push docker image
-        run: docker push iceblacktea/sonic-agent-linux-arm64-base:v1.0.2
+        run: |
+          docker buildx build --platform linux/arm64 \
+            --push \
+            -f sonic-agent/Dockerfile \
+            -t iceblacktea/sonic-agent-linux-arm64-base:v1.0.2 \
+            .

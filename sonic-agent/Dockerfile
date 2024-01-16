@@ -19,6 +19,7 @@ RUN apt-get -qqy update && \
     gnupg \
     salt-minion \
     libasound2-dev freeglut3-dev libgtk2.0-dev libusb-dev zlib1g libffi-dev libnss3 libbz2-dev zlib1g-dev \
+    android-tools-adb \
   && rm -rf /var/lib/apt/lists/* \
   && apt-get clean
 
